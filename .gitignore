@@ -6,6 +6,8 @@ dorna_lab/__pycache__/tornado_jinja_mixin.cpython-39.pyc
 dorna_lab/__pycache__/config.cpython-39.pyc
 *.pyc
 
+.DS_Store
+dorna.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -65,7 +67,7 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
+# *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
