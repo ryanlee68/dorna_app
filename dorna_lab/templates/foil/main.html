@@ -1,4 +1,39 @@
-<div class="flex" style="">
-	testing
+<div>
+	<div class="flex" style="display: flex; gap: 20px; margin: 0 70px; padding-top: 100px;">
+		<!-- Left: Live AI Feed -->
+		<div style="width: 50%; border: 3px solid #000000; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+			insert live ai feed
+		</div>
 
+		<!-- Right: Stacked Content -->
+		<div style="display: flex; flex-direction: column; gap: 20px; width: 50%;">
+			<!-- Test Div -->
+			<div style="border: 3px solid #000000; padding: 10px; text-align: center;">
+				test
+			</div>
+
+			<!-- Linear Actuator Control -->
+			<div style="border: 3px solid #000000; padding: 20px; text-align: center;">
+				<div style="margin-bottom: 10px;">Linear Actuator Control</div>
+				<div style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 20px;">
+					<button type="button" class="jog_b btn btn-primary jog_b_{{j5}}m" 
+							style="width: 60px; height: 40px; display: flex; align-items: center; justify-content: center;" 
+							data-key={{j5}} 
+							data-value=-1 
+							tab="joint" 
+							data-cmd={{cmd["jmove"]}} 
+							data-type="joint">Down {{j5}}
+					</button>
+					<button type="button" class="jog_b btn btn-primary jog_b_{{j5}}p" 
+							style="width: 60px; height: 40px; display: flex; align-items: center; justify-content: center;" 
+							data-key={{j5}} 
+							data-value=1 
+							tab="joint" 
+							data-cmd={{cmd["jmove"]}} 
+							data-type="joint">Up {{j5}}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
