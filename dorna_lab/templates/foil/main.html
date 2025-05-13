@@ -1,55 +1,49 @@
 <div>
-	<div class="flex" style="display: flex; gap: 20px; margin: 0 70px; padding-top: 100px;">
-		<!-- Left: Live AI Feed -->
-		<div style="width: 50%; border: 3px solid #000000; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-			insert live ai feed
-		</div>
+    <div class="flex" style="display: flex; gap: 20px; margin: 0 70px; padding-top: 100px;">
+        <!-- Left: Live AI Feed -->
+        <div style="width: 75%; border: 3px solid #000000; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            insert live ai feed
+        </div>
 
-		<!-- Right: Stacked Content -->
-		<div style="display: flex; flex-direction: column; gap: 20px; width: 50%;">
-			<!-- Test Div -->
-			<div style="border: 3px solid #000000; padding: 10px; text-align: center;">
-				test
-			</div>
+        <!-- Right: Stacked Content -->
+        <div style="display: flex; flex-direction: column; gap: 20px; width: 25%;">
+            <!-- Test Div -->
+            <div style="border: 3px solid #000000; padding: 10px; text-align: center;">
+                test
+            </div>
 
-			<!-- Linear Actuator Control -->
-			<div style="border: 3px solid #000000; padding: 20px; text-align: center;">
-				<div style="margin-bottom: 10px;">Linear Actuator Control</div>
-				<div style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 20px;">
-					<button type="button" class="jog_b btn btn-primary jog_b_{{j5}}m" 
-							style="width: 60px; height: 40px; display: flex; align-items: center; justify-content: center;" 
-							data-key={{j5}} 
-							data-value=-1 
-							tab="joint" 
-							data-cmd={{cmd["jmove"]}} 
-							data-type="joint">Down {{j5}}
-					</button>
-					<button type="button" class="jog_b btn btn-primary jog_b_{{j5}}p" 
-							style="width: 60px; height: 40px; display: flex; align-items: center; justify-content: center;" 
-							data-key={{j5}} 
-							data-value=1 
-							tab="joint" 
-							data-cmd={{cmd["jmove"]}} 
-							data-type="joint">Up {{j5}}
-					</button>
-				</div>
-			</div>
-
-			<tr class="jog_form" data-key="5" style="">
-				<td>
-					<input type="number" class="text-center form-control bind go_v small" value="0" step="0.001" data-key="j5" data-cmd="jmove" data-item="joint" data-type="joint">
-				</td>      
-				<td>
-					<button type="button" class="jog_b btn btn-primary jog_b_j5m" data-key="j5" data-value="-1" tab="joint" data-cmd="jmove" data-type="joint">- j5
-					</button>
-					<button type="button" class="jog_b btn btn-primary jog_b_j5p" data-key="j5" data-value="1" tab="joint" data-cmd="jmove" data-type="joint">+ j5
-					</button>
-				</td>      
-			</tr>
-			
-
-			
-
-		</div>
-	</div>
+            <!-- Linear Actuator Control -->
+            <div style="border: 3px solid #000000; padding: 20px; text-align: center;">
+                <div style="margin-bottom: 10px;">Linear Actuator Control</div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; justify-content: center; margin-top: 20px;">
+                    <tr class="jog_form" data-key="5" style="">
+                        <!-- <td>
+                            <input type="number" class="text-center form-control bind go_v small" value="0" step="0.001" data-key="j5" data-cmd="jmove" data-item="joint" data-type="joint">
+                        </td>       -->
+                        <td>
+                            <button type="button" class="jog_b btn btn-primary jog_b_j5p" data-key="j5" data-value="1" tab="joint" data-cmd="jmove" data-type="joint">Up
+                            </button>
+                            <button type="button" class="jog_b btn btn-primary jog_b_j5m" data-key="j5" data-value="-1" tab="joint" data-cmd="jmove" data-type="joint">Down
+                            </button>
+                        </td>      
+                    </tr>
+                </div>
+            </div>
+			<tr class="versionable" version="dorna_2" style="display: table-row;"> 
+              <td></td>
+              <td></td>
+              <td>
+                <button type="button" class="set_joint_b all btn btn-primary btn-block" data-cmd="joint">Set all</button>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+			<td class="border-right border-bottom" style="width: 50%">
+			        <div class="custom-control custom-switch mt-auto mb-auto ml-4">
+						<input type="checkbox" class="custom-control-input motor_c" id="motor_c" data-key="motor" data-cmd="motor">
+						<label class="custom-control-label w-100" for="motor_c">Motors</label>
+			        </div>			  		
+			</td>
+        </div>
+    </div>
 </div>
