@@ -100,7 +100,7 @@ $(".jog_b").on("mousedown touchstart", function(e) {
 	e.preventDefault();
 
 	
-	//console.log( $(this).attr("data-cmd") , $(this).attr("data-key") , $(this).attr("data-value"))
+	console.log( $(this).attr("data-cmd") , $(this).attr("data-key") , $(this).attr("data-value"))
 	let msg = {	"cmd": $(this).attr("data-cmd"),
 				"rel":0};
 
@@ -165,7 +165,7 @@ $(".jog_b").on("mousedown touchstart", function(e) {
 	});
 	
 	// get necessary attributes
-
+	console.log("msg",msg)
 	send_message(msg)
 	if(!$(`.jog_d_c[data-cmd=${msg["cmd"]}]`).prop("checked")){
 		$(document).on("mouseup touchend", function(e) {

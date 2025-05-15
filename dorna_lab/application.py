@@ -14,6 +14,8 @@ from dorna2 import Dorna, __version__ as V_API
 from tool import db,folder,shell, update, kinematic
 import config
 
+from cap120.Robot import Robot
+
 PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_PATH_DIR = os.path.join(PATH, 'static')
 
@@ -96,11 +98,91 @@ DORNA = DornaConnection()
 
 
 class WebSocket(tornado.websocket.WebSocketHandler):
+
+    running_bool = False
+    # paused_bool = False
+    print("test")
+
     async def open(self):
         DORNA.register_ws(self)
 
+    def pause_foil(self, msg):
+        if not self.running_bool:
+            print("robot is already paused")
+            return
+
+        self.running_bool = False
+        print(f"from python: {msg}")
+        vel = 1900
+        accel = 900
+        jerk = 900
+        turn = 0
+        cont = True
+
+        ip = "169.254.81.54"
+        dorna = Dorna()
+        dorna.connect(ip)
+
+        robot = Robot(dorna, vel, accel, jerk, turn, cont)
+        while True:
+            robot.sleep(0.1)
+            if self.running_bool:
+                print("robot is has been resumed")
+                break
+
+
+    def start_foil(self, msg):
+        if self.running_bool:
+            print("foil process already running")
+            return
+
+        self.running_bool = True
+        print(f"from python: {msg}")
+        vel = 1900
+        accel = 900
+        jerk = 900
+        turn = 0
+        cont = True
+
+        ip = "169.254.81.54"
+        dorna = Dorna()
+        dorna.connect(ip)
+
+        robot = Robot(dorna, vel, accel, jerk, turn, cont)
+
+        robot.startup()
+        robot.dorna.output(4,1)
+        robot.dorna.output(0,1)
+        robot.dorna.jmove(**robot.no_rel,j1=70, j2=0)
+        robot.dorna.jmove(**robot.no_rel,j0=0)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        robot.dorna.jmove(**robot.rel,j0=4)
+        robot.dorna.jmove(**robot.rel,j0=-4)
+        self.running_bool = False
+
     def on_message(self, msg):
         msg = json.loads(msg)
+        if "start" in msg:
+            self.start_foil(msg)
+
+        if "pause" in msg:
+            self.pause_foil(msg)
+
 
         if '_server' in msg:
             if msg["_server"] == "shell":
